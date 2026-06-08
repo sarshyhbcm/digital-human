@@ -1,0 +1,232 @@
+/* ============ 古风禅意主题 - Zen Theme ============ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+/* ===== 色彩与设计标记 ===== */
+.zen-theme {
+  --paper-warm: #f5f0e8;
+  --paper-dark: #ede4d6;
+  --paper-deep: #e2d9c8;
+  --ink-black: #2c2c2c;
+  --ink-dark: #3d3730;
+  --ink-light: #6b6358;
+  --ink-mist: #a8a095;
+  --ink-faint: rgba(168, 160, 149, 0.12);
+  --gold: #b8860b;
+  --gold-light: #d4a017;
+  --gold-glow: rgba(212, 160, 23, 0.15);
+  --vermillion: #c23a2b;
+  --vermillion-light: #e85d4a;
+  --jade: #5b8c5a;
+  --jade-light: #7daf7c;
+  --font-display: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  --font-body: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.05);
+  --shadow-float: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-warm: 0 4px 20px rgba(107, 99, 88, 0.08);
+  --radius-card: 12px;
+}
+
+/* ===== 全局基调 ===== */
+.zen-theme {
+  font-family: var(--font-body);
+  color: var(--ink-black);
+  background-color: var(--paper-warm);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(180, 160, 140, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(180, 160, 140, 0.06) 0%, transparent 50%);
+}
+
+/* ===== 自定义滚动条 ===== */
+.zen-theme ::-webkit-scrollbar { width: 6px; }
+.zen-theme ::-webkit-scrollbar-track { background: transparent; }
+.zen-theme ::-webkit-scrollbar-thumb {
+  background: var(--ink-mist);
+  border-radius: 3px;
+  opacity: 0.5;
+}
+.zen-theme ::-webkit-scrollbar-thumb:hover { background: var(--ink-light); }
+
+/* ======================================================
+   Element Plus 覆写
+   ====================================================== */
+
+/* --- 导航栏 el-menu horizontal --- */
+.zen-theme .el-menu--horizontal.el-menu {
+  background: rgba(245, 240, 232, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(168, 160, 149, 0.18);
+  padding: 0 24px;
+  height: 60px;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item {
+  background: transparent !important;
+  color: var(--ink-light);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: none !important;
+  transition: color 0.25s ease;
+  padding: 0 18px;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item .el-icon {
+  color: var(--ink-mist);
+  transition: color 0.25s ease;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item:hover {
+  color: var(--ink-black) !important;
+  background: transparent !important;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item:hover .el-icon {
+  color: var(--ink-light);
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item.is-active {
+  color: var(--ink-black) !important;
+  border-bottom: none !important;
+  font-weight: 600;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item.is-active .el-icon {
+  color: var(--vermillion);
+}
+
+/* 朱砂底线 */
+.zen-theme .el-menu--horizontal .el-menu-item.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2.5px;
+  background: var(--vermillion);
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+.zen-theme .el-menu--horizontal .el-menu-item.is-active:hover::after {
+  width: 32px;
+}
+
+/* 子菜单 / 弹出菜单 */
+.zen-theme .el-menu--horizontal .el-menu-item *,
+.zen-theme .el-menu--horizontal .el-sub-menu .el-sub-menu__title {
+  border-bottom: none !important;
+}
+
+/* --- el-card --- */
+.zen-theme .el-card {
+  border: 1px solid rgba(168, 160, 149, 0.15);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.zen-theme .el-card__header {
+  border-bottom: 1px solid rgba(168, 160, 149, 0.12);
+  padding: 16px 20px;
+}
+
+.zen-theme .el-card__body {
+  padding: 20px;
+}
+
+/* --- el-button --- */
+.zen-theme .el-button {
+  border-radius: 8px;
+  font-family: var(--font-body);
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+/* 实心主要按钮 */
+.zen-theme .el-button--primary:not(.is-text) {
+  background: var(--ink-dark);
+  border-color: var(--ink-dark);
+  color: var(--paper-warm);
+}
+.zen-theme .el-button--primary:not(.is-text):hover {
+  background: var(--ink-black);
+  border-color: var(--ink-black);
+  box-shadow: 0 0 16px rgba(44, 44, 44, 0.15);
+}
+
+/* text 按钮（透明底，浮出墨色） */
+.zen-theme .el-button--primary.is-text {
+  background: transparent;
+  border: none;
+  color: var(--ink-light);
+}
+.zen-theme .el-button--primary.is-text:hover {
+  background: rgba(168, 160, 149, 0.12);
+  color: var(--ink-black);
+}
+
+.zen-theme .el-button--primary.is-text:active {
+  background: rgba(168, 160, 149, 0.2);
+}
+
+/* danger text 按钮 */
+.zen-theme .el-button--danger.is-text {
+  background: transparent;
+  border: none;
+  color: var(--vermillion);
+}
+.zen-theme .el-button--danger.is-text:hover {
+  background: rgba(194, 58, 43, 0.08);
+  color: var(--vermillion-light);
+}
+
+.zen-theme .el-button--warning {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+.zen-theme .el-button--warning:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+
+/* --- el-tag --- */
+.zen-theme .el-tag.el-tag--success {
+  background: rgba(91, 140, 90, 0.1);
+  border-color: rgba(91, 140, 90, 0.25);
+  color: var(--jade);
+}
+
+.zen-theme .el-tag.el-tag--info {
+  background: var(--ink-faint);
+  border-color: transparent;
+  color: var(--ink-mist);
+}
+
+/* --- el-carousel --- */
+.zen-theme .el-carousel__button {
+  background: var(--ink-mist);
+  opacity: 0.4;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.zen-theme .el-carousel__indicator.is-active .el-carousel__button {
+  background: var(--vermillion);
+  opacity: 1;
+  width: 32px;
+}
+
+/* --- el-skeleton --- */
+.zen-theme .el-skeleton__item {
+  background: linear-gradient(90deg, var(--ink-faint) 25%, rgba(168, 160, 149, 0.05) 37%, var(--ink-faint) 63%);
+}

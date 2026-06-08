@@ -1,0 +1,77 @@
+server:
+  port: 8080
+
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
+
+spring:
+  application:
+    name: LingJingDigitalHuman
+
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/lingjing_digital_human?useUnicode=true&characterEncoding=UTF-8&connectionCollation=utf8mb4_general_ci&characterSetResults=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: ${DB_PASSWORD:123456}
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      stat-view-servlet:
+        enabled: false
+        url-pattern: /druid/*
+        # 生产环境通过环境变量 DRUID_USERNAME / DRUID_PASSWORD 设置
+        login-username: ${DRUID_USERNAME:admin}
+        login-password: ${DRUID_PASSWORD:}
+      connection-init-sqls:
+        - "SET NAMES utf8mb4"
+      connection-properties: "useUnicode=true;characterEncoding=UTF-8;characterSetResults=UTF-8"
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: cn.edu.nuc.digitalhuman.**.entity
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+jwt:
+  expiration: 604800000
+
+llm:
+  api-key: ${LLM_API_KEY:sk-a0c3fd8807214f888ed87cad1503747b}
+  model: qwen-turbo
+  base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+
+upload:
+  path: uploads/
+
+asr:
+  api-key: ${llm.api-key}
+  model: paraformer-v1
+  base-url: https://dashscope.aliyuncs.com/api/v1/services/audio/asr
+
+tts:
+  api-key: ${llm.api-key}
+  model: cosyvoice-v3-flash
+  voice: longxiaochun_v3
+  base-url: https://dashscope.aliyuncs.com/api/v1/services/audio/tts
+
+kb:
+  docs-path: "D:/中国软件杯-A5景区数字人/示范景区公开资料包"
+
+baidu:
+  api-key: ${BAIDU_API_KEY:KOgzo1qE5ESfih7pxjRX9m2x}
+  secret-key: ${BAIDU_SECRET_KEY:tewBshyX3XFGmKB2RNkH6gzUnxuDmbEq}

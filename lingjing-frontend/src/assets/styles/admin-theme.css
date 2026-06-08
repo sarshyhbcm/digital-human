@@ -1,0 +1,668 @@
+/* ========================================
+   灵境智游管理后台 · 暗影蓝调主题
+   Dark Sci-Fi Design Tokens & Overrides
+   ======================================== */
+
+/* --- Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* --- CSS Design Tokens --- */
+.sci-fi-theme {
+  /* --- Backgrounds --- */
+  --bg-deep: #070b14;
+  --bg-surface: #0c1225;
+  --bg-elevated: #121b35;
+  --bg-hover: #1a2548;
+  --bg-sidebar: #080c1a;
+  --bg-glass: rgba(18, 27, 53, 0.85);
+
+  /* Text */
+  --text-primary: #e2e8f0;
+  --text-secondary: #8899c0;
+  --text-muted: #5a6a8a;
+  --text-dim: #3a4a6a;
+
+  /* Accents */
+  --accent-blue: #2e7df6;
+  --accent-cyan: #06b6d4;
+  --accent-glow: rgba(46, 125, 246, 0.12);
+  --accent-glow-strong: rgba(46, 125, 246, 0.2);
+
+  /* Status */
+  --green: #10b981;
+  --yellow: #f59e0b;
+  --red: #ef4444;
+
+  /* Borders */
+  --border-subtle: rgba(46, 125, 246, 0.08);
+  --border-default: rgba(46, 125, 246, 0.15);
+  --border-glow: rgba(46, 125, 246, 0.25);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 24px rgba(46, 125, 246, 0.1);
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius: 8px;
+  --radius-lg: 12px;
+
+  /* Fonts */
+  --font-display: 'Outfit', 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* === Legacy aliases (for scoped styles in pages) === */
+  --bg-paper: var(--bg-surface);
+  --bg-card: var(--bg-elevated);
+  --bg-header: var(--bg-glass);
+  --bg-toolbar: rgba(46, 125, 246, 0.05);
+  --text-ink: var(--text-primary);
+  --text-light: var(--text-dim);
+  --border-parchment: var(--border-default);
+  --border-light: var(--border-subtle);
+  --gold: var(--accent-blue);
+  --gold-light: #5b9af8;
+  --gold-bg: rgba(46, 125, 246, 0.1);
+  --jade: var(--green);
+  --jade-light: #34d399;
+  --jade-bg: rgba(16, 185, 129, 0.1);
+  --vermillion: var(--red);
+  --vermillion-light: #f87171;
+  --shadow-warm: var(--shadow-md);
+  --shadow-card: var(--shadow-sm);
+
+  /* === Element Plus Overrides === */
+  --el-color-primary: var(--accent-blue);
+  --el-color-primary-light-3: #5b9af8;
+  --el-color-primary-light-5: #8db8fa;
+  --el-color-primary-light-7: #bed5fc;
+  --el-color-primary-light-8: #d6e6fd;
+  --el-color-primary-light-9: #eef4fe;
+  --el-color-primary-dark-2: #2564c4;
+
+  --el-color-success: var(--green);
+  --el-color-success-light-3: #34d399;
+  --el-color-warning: var(--yellow);
+  --el-color-warning-light-3: #fbbf24;
+  --el-color-danger: var(--red);
+  --el-color-error: var(--red);
+  --el-color-info: var(--text-muted);
+
+  --el-bg-color: var(--bg-surface);
+  --el-bg-color-page: var(--bg-deep);
+  --el-bg-color-overlay: var(--bg-elevated);
+  --el-text-color-primary: var(--text-primary);
+  --el-text-color-regular: var(--text-secondary);
+  --el-text-color-secondary: var(--text-muted);
+  --el-text-color-placeholder: var(--text-dim);
+  --el-border-color: var(--border-default);
+  --el-border-color-light: var(--border-subtle);
+  --el-border-color-lighter: var(--border-subtle);
+  --el-border-color-extra-light: transparent;
+  --el-border-radius-base: var(--radius);
+  --el-border-radius-small: var(--radius-sm);
+  --el-border-radius-round: 20px;
+  --el-shadow-base: var(--shadow-sm);
+
+  /* Fill colors (Element Plus internal backgrounds) */
+  --el-fill-color: rgba(255, 255, 255, 0.05);
+  --el-fill-color-light: rgba(255, 255, 255, 0.08);
+  --el-fill-color-lighter: rgba(255, 255, 255, 0.03);
+  --el-fill-color-blank: rgba(46, 125, 246, 0.03);
+
+  /* Popover / Popper / Tooltip */
+  --el-popover-bg-color: var(--bg-elevated);
+  --el-popover-border-color: var(--border-default);
+  --el-tooltip-bg-color: var(--bg-elevated);
+  --el-popper-bg-color: var(--bg-elevated);
+  --el-popper-border-color: var(--border-default);
+
+  /* Card */
+  --el-card-border-color: var(--border-default);
+  --el-card-bg-color: var(--bg-elevated);
+
+  /* Button */
+  --el-button-bg-color: var(--bg-elevated);
+  --el-button-border-color: var(--border-default);
+  --el-button-hover-bg-color: rgba(46, 125, 246, 0.12);
+  --el-button-hover-border-color: var(--accent-blue);
+  --el-button-hover-text-color: var(--accent-blue);
+
+  /* Menu */
+  --el-menu-bg-color: var(--bg-sidebar);
+  --el-menu-text-color: var(--text-secondary);
+  --el-menu-active-color: var(--accent-blue);
+  --el-menu-hover-bg-color: rgba(46, 125, 246, 0.08);
+  --el-menu-hover-text-color: var(--text-primary);
+
+  /* Input */
+  --el-input-bg-color: rgba(255, 255, 255, 0.04);
+  --el-input-border-color: var(--border-default);
+  --el-input-hover-border-color: var(--accent-blue);
+  --el-input-focus-border-color: var(--accent-blue);
+  --el-input-text-color: var(--text-primary);
+  --el-input-placeholder-color: var(--text-dim);
+
+  /* Table */
+  --el-table-bg-color: var(--bg-elevated);
+  --el-table-tr-bg-color: transparent;
+  --el-table-header-bg-color: rgba(46, 125, 246, 0.05);
+  --el-table-row-hover-bg-color: var(--bg-hover);
+  --el-table-border-color: var(--border-subtle);
+  --el-table-header-text-color: var(--text-secondary);
+  --el-table-text-color: var(--text-primary);
+
+  /* Pagination */
+  --el-pagination-button-bg-color: var(--bg-elevated);
+  --el-pagination-hover-color: var(--accent-blue);
+  --el-pagination-button-hover-bg-color: rgba(46, 125, 246, 0.1);
+
+  /* Dialog */
+  --el-dialog-bg-color: var(--bg-elevated);
+  --el-dialog-title-font-size: 18px;
+  --el-dialog-header-font-weight: 600;
+
+  /* Tag */
+  --el-tag-bg-color: rgba(46, 125, 246, 0.1);
+  --el-tag-border-color: transparent;
+  --el-tag-text-color: var(--accent-blue);
+  --el-tag-hover-color: var(--accent-cyan);
+
+  /* Divider */
+  --el-divider-border-color: var(--border-default);
+
+  /* Select */
+  --el-select-bg-color: var(--bg-elevated);
+  --el-select-border-color-hover: var(--accent-blue);
+  --el-select-input-focus-border-color: var(--accent-blue);
+
+  /* Switch */
+  --el-switch-on-color: var(--accent-blue);
+  --el-switch-off-color: rgba(255, 255, 255, 0.12);
+
+  /* Slider */
+  --el-slider-runway-bg-color: rgba(255, 255, 255, 0.08);
+  --el-slider-stop-bg-color: rgba(255, 255, 255, 0.12);
+  --el-slider-button-bg-color: var(--accent-blue);
+  --el-slider-bar-bg-color: var(--accent-blue);
+
+  /* Dropdown */
+  --el-dropdown-bg-color: var(--bg-elevated);
+  --el-dropdown-border-color: var(--border-default);
+  --el-dropdown-menuItem-hover-bg-color: var(--bg-hover);
+
+  /* Message */
+  --el-message-bg-color: var(--bg-elevated);
+  --el-message-border-color: var(--border-default);
+}
+
+/* --- Base Layout --- */
+.sci-fi-theme {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  /* Subtle grid overlay */
+  background-image:
+    linear-gradient(rgba(46, 125, 246, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 125, 246, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* ============ Page Title ============ */
+.sci-fi-theme .page-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--text-primary);
+  margin: 0 0 24px;
+  letter-spacing: 1px;
+  position: relative;
+  padding-left: 16px;
+}
+.sci-fi-theme .page-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent-blue), var(--accent-cyan));
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(46, 125, 246, 0.4);
+}
+
+/* ============ Card ============ */
+.sci-fi-theme .el-card {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+.sci-fi-theme .el-card:hover {
+  border-color: rgba(46, 125, 246, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+.sci-fi-theme .el-card__header {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 16px 20px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+.sci-fi-theme .el-card.is-never-shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============ Button ============ */
+.sci-fi-theme .el-button--primary {
+  --el-button-text-color: #fff;
+  --el-button-bg-color: var(--accent-blue);
+  --el-button-border-color: var(--accent-blue);
+  --el-button-hover-bg-color: #3d8bf7;
+  --el-button-hover-border-color: #3d8bf7;
+  --el-button-active-bg-color: #2564c4;
+  --el-button-active-border-color: #2564c4;
+}
+.sci-fi-theme .el-button--primary:hover {
+  box-shadow: 0 2px 12px rgba(46, 125, 246, 0.35);
+}
+.sci-fi-theme .el-button--primary:active {
+  box-shadow: 0 1px 4px rgba(46, 125, 246, 0.25);
+}
+
+.sci-fi-theme .el-button--default {
+  --el-button-bg-color: rgba(255, 255, 255, 0.04);
+  --el-button-border-color: var(--border-default);
+  --el-button-text-color: var(--text-secondary);
+  --el-button-hover-bg-color: rgba(46, 125, 246, 0.08);
+  --el-button-hover-border-color: var(--accent-blue);
+  --el-button-hover-text-color: var(--accent-blue);
+}
+
+/* ============ Tag ============ */
+.sci-fi-theme .el-tag {
+  --el-tag-bg-color: rgba(46, 125, 246, 0.12);
+  --el-tag-border-color: transparent;
+  --el-tag-text-color: var(--accent-blue);
+  --el-tag-hover-color: var(--accent-cyan);
+  border: none;
+}
+.sci-fi-theme .el-tag--primary {
+  --el-tag-bg-color: rgba(46, 125, 246, 0.12);
+  --el-tag-text-color: var(--accent-blue);
+  --el-tag-border-color: transparent;
+}
+.sci-fi-theme .el-tag--success {
+  --el-tag-bg-color: rgba(16, 185, 129, 0.12);
+  --el-tag-text-color: var(--green);
+  --el-tag-border-color: transparent;
+}
+.sci-fi-theme .el-tag--warning {
+  --el-tag-bg-color: rgba(245, 158, 11, 0.12);
+  --el-tag-text-color: var(--yellow);
+  --el-tag-border-color: transparent;
+}
+.sci-fi-theme .el-tag--danger {
+  --el-tag-bg-color: rgba(239, 68, 68, 0.12);
+  --el-tag-text-color: var(--red);
+  --el-tag-border-color: transparent;
+}
+.sci-fi-theme .el-tag--info {
+  --el-tag-bg-color: rgba(90, 106, 138, 0.12);
+  --el-tag-text-color: var(--text-secondary);
+  --el-tag-border-color: transparent;
+}
+.sci-fi-theme .el-tag.is-hit {
+  border-color: transparent;
+}
+
+/* ============ Dialog ============ */
+.sci-fi-theme .el-dialog {
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  background: var(--bg-elevated);
+}
+.sci-fi-theme .el-dialog__header {
+  padding: 20px 24px 0;
+}
+.sci-fi-theme .el-dialog__title {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.sci-fi-theme .el-dialog__body {
+  padding: 20px 24px;
+}
+.sci-fi-theme .el-dialog__footer {
+  padding: 0 24px 20px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+/* ============ Form ============ */
+.sci-fi-theme .el-form-item__label {
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.sci-fi-theme .el-input__wrapper {
+  box-shadow: none !important;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+}
+.sci-fi-theme .el-input__wrapper:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(46, 125, 246, 0.1) !important;
+}
+.sci-fi-theme .el-input__wrapper.is-focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 1px rgba(46, 125, 246, 0.2) !important;
+  background: rgba(255, 255, 255, 0.05);
+}
+.sci-fi-theme .el-input__inner {
+  color: var(--text-primary) !important;
+}
+.sci-fi-theme .el-input__prefix {
+  color: var(--text-dim) !important;
+}
+.sci-fi-theme .el-input--large .el-input__wrapper {
+  padding: 4px 16px;
+}
+.sci-fi-theme .el-textarea__inner {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: none !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+.sci-fi-theme .el-textarea__inner:hover {
+  border-color: var(--accent-blue) !important;
+}
+.sci-fi-theme .el-textarea__inner:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 1px rgba(46, 125, 246, 0.1) !important;
+}
+.sci-fi-theme .el-input__count {
+  color: var(--text-dim) !important;
+  background: transparent !important;
+}
+
+/* ============ Divider ============ */
+.sci-fi-theme .el-divider {
+  border-color: var(--border-subtle);
+}
+
+/* ============ Table ============ */
+.sci-fi-theme .el-table {
+  border-radius: var(--radius);
+  --el-table-border: none;
+}
+.sci-fi-theme .el-table th.el-table__cell {
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  background: rgba(46, 125, 246, 0.06);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.sci-fi-theme .el-table td.el-table__cell {
+  border-bottom: 1px solid rgba(46, 125, 246, 0.04);
+}
+.sci-fi-theme .el-table--striped .el-table__body tr.el-table__row--striped td {
+  background: rgba(46, 125, 246, 0.02);
+}
+.sci-fi-theme .el-table__body tr.el-table__row:hover td {
+  background: var(--bg-hover);
+}
+.sci-fi-theme .el-table__body tr.el-table__row td.el-table-fixed-column--left,
+.sci-fi-theme .el-table__body tr.el-table__row td.el-table-fixed-column--right {
+  background: var(--bg-elevated);
+}
+.sci-fi-theme .el-table__body tr.el-table__row:hover td.el-table-fixed-column--left,
+.sci-fi-theme .el-table__body tr.el-table__row:hover td.el-table-fixed-column--right {
+  background: var(--bg-hover);
+}
+
+/* ============ Pagination ============ */
+.sci-fi-theme .el-pagination {
+  --el-pagination-button-bg-color: rgba(255, 255, 255, 0.04);
+  --el-pagination-button-hover-bg-color: rgba(46, 125, 246, 0.1);
+}
+.sci-fi-theme .el-pagination button:not(.is-active) {
+  color: var(--text-secondary);
+}
+.sci-fi-theme .el-pagination .el-pager li {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-sm);
+  margin: 0 2px;
+}
+.sci-fi-theme .el-pagination .el-pager li.is-active {
+  color: #fff;
+  background: var(--accent-blue);
+}
+
+/* ============ Select ============ */
+.sci-fi-theme .el-select .el-input__wrapper {
+  background: rgba(255, 255, 255, 0.03);
+}
+.sci-fi-theme .el-select-dropdown {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border-default) !important;
+  box-shadow: var(--shadow-lg);
+}
+.sci-fi-theme .el-select-dropdown__item {
+  color: var(--text-secondary);
+  background: transparent !important;
+}
+.sci-fi-theme .el-select-dropdown__item.hover,
+.sci-fi-theme .el-select-dropdown__item:hover {
+  background: var(--bg-hover) !important;
+  color: var(--text-primary);
+}
+.sci-fi-theme .el-select-dropdown__item.is-selected {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+.sci-fi-theme .el-select-dropdown__item.is-disabled {
+  color: var(--text-dim);
+}
+
+/* Select popper wrapper */
+.sci-fi-theme .el-popper.is-pure {
+  background: var(--bg-elevated) !important;
+  border-color: var(--border-default) !important;
+}
+.sci-fi-theme .el-popper.is-pure .el-popper__arrow::before {
+  background: var(--bg-elevated);
+  border-color: var(--border-default);
+}
+
+/* ============ Switch ============ */
+.sci-fi-theme .el-switch__core {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============ Slider ============ */
+.sci-fi-theme .el-slider__marks-text {
+  color: var(--text-dim);
+  font-size: 11px;
+}
+
+/* ============ Breadcrumb ============ */
+.sci-fi-theme .el-breadcrumb__inner {
+  color: var(--text-secondary) !important;
+}
+.sci-fi-theme .el-breadcrumb__inner.is-link {
+  color: var(--accent-blue) !important;
+}
+
+/* ============ Alert ============ */
+.sci-fi-theme .el-alert {
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+}
+.sci-fi-theme .el-alert--info {
+  background: rgba(46, 125, 246, 0.08);
+  border-color: rgba(46, 125, 246, 0.15);
+}
+
+/* ============ Global Utility Classes ============ */
+
+/* Toolbar */
+.sci-fi-theme .toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* Pagination wrapper */
+.sci-fi-theme .pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ============ Stat Cards ============ */
+.sci-fi-theme .stat-cards {
+  margin-bottom: 0;
+}
+.sci-fi-theme .stat-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.sci-fi-theme .stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+  opacity: 0.6;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+.sci-fi-theme .stat-card:hover::after {
+  opacity: 1;
+  height: 3px;
+  box-shadow: 0 0 12px rgba(46, 125, 246, 0.3);
+}
+.sci-fi-theme .stat-value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+.sci-fi-theme .stat-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* ============ Empty State ============ */
+.sci-fi-theme .empty-chart {
+  text-align: center;
+  color: var(--text-dim);
+  padding: 60px 0;
+  font-size: 14px;
+}
+
+/* ============ Scrollbar ============ */
+.sci-fi-theme ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.sci-fi-theme ::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sci-fi-theme ::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+.sci-fi-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============ Skeleton ============ */
+.sci-fi-theme .el-skeleton {
+  --el-skeleton-color: rgba(255, 255, 255, 0.06);
+  --el-skeleton-to-color: rgba(255, 255, 255, 0.02);
+}
+
+/* ============ Notification / Message ============ */
+.sci-fi-theme .el-message {
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-md);
+  min-width: 300px;
+}
+
+/* ============ Empty ============ */
+.sci-fi-theme .el-empty__description p {
+  color: var(--text-dim);
+}
+
+/* ============ Overlay / Dialog Mask ============ */
+.sci-fi-theme .el-overlay {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+/* ============ Popconfirm ============ */
+.sci-fi-theme .el-popconfirm {
+  color: var(--text-primary);
+}
+.sci-fi-theme .el-popover,
+.sci-fi-theme .el-popconfirm__main {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default) !important;
+  box-shadow: var(--shadow-lg);
+}
+.sci-fi-theme .el-popconfirm__action .el-button--default {
+  --el-button-bg-color: rgba(255, 255, 255, 0.04);
+  --el-button-border-color: var(--border-default);
+  --el-button-text-color: var(--text-secondary);
+}
+
+/* ============ Collapse ============ */
+.sci-fi-theme .el-collapse {
+  border-color: var(--border-subtle);
+}
+.sci-fi-theme .el-collapse-item__header {
+  color: var(--text-primary);
+  background: transparent;
+}
+.sci-fi-theme .el-collapse-item__wrap {
+  background: transparent;
+}
+
+/* ============ Checkbox ============ */
+.sci-fi-theme .el-checkbox__label {
+  color: var(--text-secondary);
+}
+.sci-fi-theme .el-checkbox__input.is-checked + .el-checkbox__label {
+  color: var(--accent-blue);
+}
+
+/* ============ Radio ============ */
+.sci-fi-theme .el-radio__label {
+  color: var(--text-secondary);
+}
+.sci-fi-theme .el-radio__input.is-checked + .el-radio__label {
+  color: var(--accent-blue);
+}

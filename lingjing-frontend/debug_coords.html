@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>景点坐标查询</title>
+  <style>
+    body { font-family: 'Microsoft YaHei', sans-serif; padding: 20px; background: #f5f7fa; }
+    h1 { font-size: 18px; color: #303133; }
+    #status { color: #909399; margin-bottom: 12px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #ebeef5; font-size: 13px; }
+    th { background: #ecf5ff; color: #303133; font-weight: 600; }
+    .done { color: #67c23a; }
+    .error { color: #f56c6c; }
+    .searching { color: #e6a23c; }
+    .coord { font-family: monospace; font-size: 12px; }
+    .sql-ready { background: #f0f9eb; }
+  </style>
+</head>
+<body>
+  <h1>🔍 景点坐标自动查询</h1>
+  <div id="status">正在查询...</div>
+  <table id="result">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>景点名称</th>
+        <th>经度 (lng)</th>
+        <th>纬度 (lat)</th>
+        <th>状态</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  <div style="margin-top: 16px; display: flex; gap: 8px;">
+    <button id="copySql" style="padding: 8px 16px; background: #409eff; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">复制 UPDATE SQL</button>
+    <button id="copyJson" style="padding: 8px 16px; background: #67c23a; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;">复制 JSON</button>
+  </div>
+  <pre id="output" style="margin-top: 12px; background: #303133; color: #e6e6e6; padding: 16px; border-radius: 8px; font-size: 12px; max-height: 300px; overflow: auto; display: none;"></pre>
+
+  <script src="https://webapi.amap.com/maps?v=2.0&key=b6774daeb714a08771eedc1c2e939576&plugin=AMap.PlaceSearch"></script>
+  <script>
+    const attractions = [
+      { id: 1, name: '灵山大照壁', area: '灵山胜境' },
+      { id: 2, name: '五明桥', area: '灵山胜境' },
+      { id: 3, name: '佛足坛', area: '灵山胜境' },
+      { id: 4, name: '五智门', area: '灵山胜境' },
+      { id: 5, name: '菩提大道', area: '灵山胜境' },
+      { id: 6, name: '九龙灌浴', area: '灵山胜境' },
+      { id: 7, name: '降魔浮雕', area: '灵山胜境' },
+      { id: 8, name: '阿育王柱', area: '灵山胜境' },
+      { id: 9, name: '百子戏弥勒', area: '灵山胜境' },
+      { id: 10, name: '祥符禅寺', area: '灵山胜境' },
+      { id: 11, name: '灵山大佛', area: '灵山胜境' },
+      { id: 12, name: '佛教文化博览馆', area: '灵山胜境' },
+      { id: 13, name: '灵山梵宫', area: '灵山胜境' },
+      { id: 14, name: '五印坛城', area: '灵山胜境' },
+      { id: 15, name: '曼飞龙塔', area: '灵山胜境' },
+      { id: 16, name: '无尽意斋', area: '灵山胜境' },
+      { id: 17, name: '拈花广场', area: '拈花湾' },
+      { id: 18, name: '梵天花海', area: '拈花湾' },
+      { id: 19, name: '香月花街', area: '拈花湾' },
+      { id: 20, name: '拈花堂', area: '拈花湾' },
+      { id: 21, name: '五灯湖', area: '拈花湾' },
+      { id: 22, name: '鹿鸣谷', area: '拈花湾' }
+    ]
+
+    const tbody = document.getElementById('tbody')
+    const statusDiv = document.getElementById('status')
+    const outputPre = document.getElementById('output')
+    const results = []
+    let completed = 0
+
+    function row(id, name, lng, lat, status) {
+      return `<tr>
+        <td>${id}</td>
+        <td>${name}</td>
+        <td class="coord">${lng || '-'}</td>
+        <td class="coord">${lat || '-'}</td>
+        <td class="${status}">${status}</td>
+      </tr>`
+    }
+
+    // Initialize table
+    attractions.forEach(a => {
+      tbody.innerHTML += row(a.id, a.name, '-', '-', 'searching')
+    })
+
+    window.onload = function() {
+      const placeSearch = new AMap.PlaceSearch({
+        city: '无锡',
+        citylimit: true,
+        pageSize: 1
+      })
+
+      function searchNext(index) {
+        if (index >= attractions.length) {
+          statusDiv.innerHTML = '<span class="done">✅ 全部查询完成</span>'
+          return
+        }
+
+        const a = attractions[index]
+        // Also try with "灵山" or "拈花湾" prefix for better matching
+        let keyword = a.name
+        if (a.area === '灵山胜境' && !a.name.includes('灵山')) {
+          keyword = '灵山 ' + a.name
+        } else if (a.area === '拈花湾' && !a.name.includes('拈花')) {
+          keyword = '拈花湾 ' + a.name
+        }
+
+        placeSearch.search(keyword, (status, result) => {
+          let lng = '-', lat = '-', statusText = 'error'
+
+          if (status === 'complete' && result.poiList && result.poiList.pois.length > 0) {
+            const poi = result.poiList.pois[0]
+            lng = poi.location.lng.toFixed(6)
+            lat = poi.location.lat.toFixed(6)
+            statusText = 'done'
+          } else {
+            // Try without prefix
+            placeSearch.search(a.name, (status2, result2) => {
+              if (status2 === 'complete' && result2.poiList && result2.poiList.pois.length > 0) {
+                const poi = result2.poiList.pois[0]
+                lng = poi.location.lng.toFixed(6)
+                lat = poi.location.lat.toFixed(6)
+                statusText = 'done'
+              }
+              finalize(index, a, lng, lat, statusText)
+            })
+            return
+          }
+
+          finalize(index, a, lng, lat, statusText)
+        })
+      }
+
+      function finalize(index, a, lng, lat, statusText) {
+        results.push({ id: a.id, name: a.name, lng, lat, area: a.area })
+        completed++
+
+        const rows = tbody.querySelectorAll('tr')
+        const cellLng = rows[index].cells[2]
+        const cellLat = rows[index].cells[3]
+        const cellStatus = rows[index].cells[4]
+        cellLng.textContent = lng
+        cellLat.textContent = lat
+        cellStatus.textContent = statusText === 'done' ? '✅' : '❌'
+        cellStatus.className = statusText === 'done' ? 'done' : 'error'
+
+        statusDiv.innerHTML = `查询进度：${completed} / ${attractions.length}`
+        searchNext(index + 1)
+      }
+
+      searchNext(0)
+    }
+
+    document.getElementById('copySql').onclick = function() {
+      let sql = '-- 景点坐标修正（基于高德地图POI查询）\n'
+      for (const r of results) {
+        if (r.lng !== '-') {
+          sql += `UPDATE attraction SET longitude = ${r.lng}, latitude = ${r.lat} WHERE id = ${r.id}; -- ${r.name}\n`
+        }
+      }
+      outputPre.textContent = sql
+      outputPre.style.display = 'block'
+      navigator.clipboard.writeText(sql).then(() => alert('SQL已复制到剪贴板！'))
+    }
+
+    document.getElementById('copyJson').onclick = function() {
+      const json = JSON.stringify(results.filter(r => r.lng !== '-'), null, 2)
+      outputPre.textContent = json
+      outputPre.style.display = 'block'
+      navigator.clipboard.writeText(json).then(() => alert('JSON已复制到剪贴板！'))
+    }
+  </script>
+</body>
+</html>

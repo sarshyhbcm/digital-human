@@ -1,0 +1,29 @@
+{
+  "name": "lingjing-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@element-plus/icons-vue": "^2.3.0",
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "axios": "^1.6.0",
+    "echarts": "^6.1.0",
+    "element-plus": "^2.5.0",
+    "live2d-widget-model-haru": "^1.0.5",
+    "pixi-live2d-display": "^0.5.0-beta",
+    "pixi.js": "^7.4.3",
+    "vue": "^3.4.0",
+    "vue-echarts": "^8.0.1",
+    "vue-router": "^4.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "vite": "^5.4.0"
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+target/
+*.log
+.env
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.tar.gz
